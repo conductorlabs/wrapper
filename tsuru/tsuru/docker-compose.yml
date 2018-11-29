@@ -1,0 +1,90 @@
+version: "3"
+services:
+    mongo_heimdall:
+      container_name: mongo_heimdall
+      image: mongo:3.6
+      environment:
+        MONGO_INITDB_ROOT_USERNAME: admin
+        MONGO_INITDB_ROOT_PASSWORD: admin
+    redis_heimdall:
+      container_name: redis_heimdall
+      image: redis:alpine
+    rabbitmq:
+      container_name: rabbitmq_heimdall
+      image: rabbitmq:alpine
+    postgres:
+      container_name: postgres_heimdall
+      image: postgres:alpine
+      environment:
+        PGDATA: /var/lib/postgresql/data/pgdata
+        POSTGRES_DB: heimdall
+        POSTGRES_PASSWORD: '123456'
+        POSTGRES_USER: postgres
+      ports:
+      - 5433:5432/tcp
+    mongo:
+        container_name: mongo_tsuru
+        image: mongo
+        volumes:
+            - ./data/mongo:/data/db
+        ports:
+            - 27017:27017
+    redis:
+        container_name: redis_tsuru
+        image: redis
+        volumes:
+            - ./data/redis:/data
+        ports:
+            - "6379:6379"
+    registry:
+        container_name: registry_tsuru
+        image: registry:2
+        environment:
+            - REGISTRY_STORAGE_FILESYSTEM_ROOTDIRECTORY=/var/lib/registry
+            - REGISTRY_STORAGE_DELETE_ENABLED=true
+        volumes:
+            - ./data/registry:/var/lib/registry
+        ports:
+            - 5000:5000
+    planb:
+        container_name: planb_tsuru
+        image: tsuru/planb
+        command: --read-redis-host=redis --write-redis-host=redis
+        depends_on:
+            - redis
+        ports:
+            - "8989:8989"
+    gandalf:
+        container_name: gandalf
+        image: tsuru/gandalf:latest
+        environment:
+            - MONGODB_ADDR=mongo
+            - MONGODB_PORT=27017
+            - TSURU_HOST=http://api:8080
+            - TSURU_TOKEN=
+        volumes:
+            - ./data/gandalf/repositories:/var/lib/gandalf/repositories
+            - ./data/gandalf/ssh:/home/git/.ssh
+            - ./misc/git-hooks:/home/git/bare-template/hooks
+        ports:
+            - "2222:22"
+    api:
+        container_name: tsuru_api
+        build:
+            context: .
+            dockerfile: Dockerfile.dev
+        ports:
+            - 8080:8080
+        depends_on:
+            - mongo
+            - gandalf
+            - redis
+            - registry
+    node1:
+        container_name: node1_tsuru
+        image: docker:dind
+        privileged: true
+        command: --insecure-registry 10.200.10.1:5000
+        ports:
+            - "2375:2375"
+            - "32768-32772:32768-32772"

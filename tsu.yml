@@ -1,0 +1,31 @@
+---
+- hosts: 127.0.0.1
+  connection: local
+  tasks:
+    - name: "Git Install"
+      apt:
+        name: git
+        state: latest
+
+    - name: "pasta"
+      file:
+        path: ~/git
+        state: directory
+
+    - name: "git"
+      git:
+        repo: https://github.com/VictorGabriel56/Tsuru-Docker.git
+        dest: ~/git
+        clone: yes
+
+    - name: "Rodando o script"
+      command: "./build-compose.sh"
+      args:
+        chdir: ~/git
+
+    - name: "restartando api"
+      command: "docker restart api"
+
+    - name: "Gandalf"
+      command: "docker exec gandalf chown git:git /var/lib/gandalf/repositories/"
+    

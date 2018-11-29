@@ -1,6 +1,6 @@
 # Conductor Labs IESP (Turma 2)
-## Equipe
-*Clique nas fotos para acessar o GitHub*
+### Equipe
+###### *Clique nas fotos para acessar o GitHub*
 <p align="center">
   <a href="https://github.com/cayohollanda"><img src="images/cayo.jpeg" width="200" title="Cayo Hollanda"></a>
   <a href="https://github.com/eduardollanda"><img src="images/eduardo.jpeg" width="200" title="Eduardo Hollanda"></a>

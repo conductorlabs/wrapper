@@ -6,7 +6,6 @@
   <img src="./images/logo-globo.png" alt="globo.com" />
   &nbsp;
   &nbsp;
-  &nbsp;
   <img src="./images/logo-mongo.png" alt="MongoDB" width="100" />
 </div>
 

@@ -1,3 +1,10 @@
+<div>
+  <img src="./images/logo-tsuru.png" alt="Tsuru" width="160" />
+  <img src="./images/logo-gandalf.png" alt="Gandalf" width="200" />
+  <img src="./images/logo-mongo.png" alt="MongoDB" width="200" />
+  <img src="./images/logo-redis.png" alt="Redis" width="250" />
+</div>
+
 # O que é o tsuru?
 Tsuru é um orquestrador feito pela globo.com com a intenção de facilitar a vida do desenvolvedor ao fazer deploy de uma aplicação
 

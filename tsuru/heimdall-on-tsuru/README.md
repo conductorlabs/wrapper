@@ -140,5 +140,7 @@ conductorlabs@pc:~$ tsuru app-info -a heimdall-frontend
 
 <b>E é isso, seu Heimdall está UP, basta aproveitar! :smiley::smiley:</b>
 
-<a href="https://github.com/getheimdall/heimdall"><img src="../images/logo-heimdall.png" /></a>
-<a href="http://www.conductor.com.br/"><img src="../images/logo-conductor.png" /></a>
+<div align="center">
+  <a href="https://github.com/getheimdall/heimdall"><img src="./images/logo-heimdall.png" width="80" /></a>
+  <a href="http://www.conductor.com.br/"><img src="./images/logo-conductor.png" width="300" /></a>
+</div>

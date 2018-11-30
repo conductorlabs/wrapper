@@ -2,7 +2,6 @@
   <a href="https://conductor.com.br"><img src="./tsuru/heimdall-on-tsuru/images/logo-conductor.png" width="400" title="Conductor Tecnologia"></a>
 </div>
 
-# Conductor Labs IESP (Turma 2)
 <div>
   <p align="center">
     <a href="https://github.com/cayohollanda"><img src="images/cayo.jpeg" width="200" title="Cayo Hollanda"></a>

@@ -138,10 +138,10 @@ Agora basta entrar no browser com a URL da aplicação heimdall-frontend, e ver 
 conductorlabs@pc:~$ tsuru app-info -a heimdall-frontend
 ```
 
-<div>
+<div align="center">
   <b>E é isso, seu Heimdall está UP, basta aproveitar! :smiley::smiley:</b>
 </div>
-
+<br />
 <div align="center">
   <a href="https://github.com/getheimdall/heimdall"><img src="./images/logo-heimdall.png" width="80" /></a>
   <a href="http://www.conductor.com.br/"><img src="./images/logo-conductor.png" width="300" /></a>

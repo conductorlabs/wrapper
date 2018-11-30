@@ -7,7 +7,7 @@
   &nbsp;
   &nbsp;
   &nbsp;
-  <img src="./images/logo-mongo.png" alt="MongoDB" width="90" />
+  <img src="./images/logo-mongo.png" alt="MongoDB" width="100" />
 </div>
 
 # O que é o tsuru?

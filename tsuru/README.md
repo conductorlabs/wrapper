@@ -1,6 +1,6 @@
 <div>
-  <img src="./images/logo-tsuru.png" alt="Tsuru" width="160" />
-  <img src="./images/logo-globo.png" alt="globo.com" width="200" />
+  <img src="./images/logo-tsuru.png" alt="Tsuru" width="70" />
+  <img src="./images/logo-globo.png" alt="globo.com" />
 </div>
 
 # O que é o tsuru?

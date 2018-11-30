@@ -1,6 +1,13 @@
 <div>
   <img src="./images/logo-tsuru.png" alt="Tsuru" width="70" />
+  &nbsp;
+  &nbsp;
+  &nbsp;
   <img src="./images/logo-globo.png" alt="globo.com" />
+  &nbsp;
+  &nbsp;
+  &nbsp;
+  <img src="./images/logo-mongo.png" alt="MongoDB" width="90" />
 </div>
 
 # O que é o tsuru?

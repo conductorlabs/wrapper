@@ -1,3 +1,8 @@
+<div align="center">
+  <a href="https://github.com/getheimdall/heimdall"><img src="./images/logo-heimdall.png" width="80" /></a>
+  <a href="http://www.conductor.com.br/"><img src="./images/logo-conductor.png" width="300" /></a>
+</div>
+<br />
 # Subindo o Heimdall no Tsuru
 O <a href="https://getheimdall.io">getheimdall.io</a> é um orquestrador de API's que tem como objetivo trazer um caminho mais simples de manipular as requisições e respostas de sistemas empresariais
 
@@ -142,7 +147,3 @@ conductorlabs@pc:~$ tsuru app-info -a heimdall-frontend
   <b>E é isso, seu Heimdall está UP, basta aproveitar! :smiley::smiley:</b>
 </div>
 <br />
-<div align="center">
-  <a href="https://github.com/getheimdall/heimdall"><img src="./images/logo-heimdall.png" width="80" /></a>
-  <a href="http://www.conductor.com.br/"><img src="./images/logo-conductor.png" width="300" /></a>
-</div>

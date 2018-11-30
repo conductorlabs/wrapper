@@ -4,7 +4,7 @@
 </div>
 <br />
 
-# Subindo o <a href="https://getheimdall.io">getheimdall.io</a> no Tsuru
+# Subindo o <a href="https://getheimdall.io">getheimdall.io</a> no <a href="https://tsuru.io">tsuru</a>
 O <a href="https://getheimdall.io">getheimdall.io</a> é um orquestrador de API's que tem como objetivo trazer um caminho mais simples de manipular as requisições e respostas de sistemas empresariais
 
 # Como funciona o Heimdall?

@@ -35,3 +35,9 @@ Vá na aba "Clusters" do menu do Rancher e aguarde até que o seu cluster esteja
 # Criando uma aplicação
 Para criar uma aplicação é muito simples, primeiro, crie um projeto acessando Projects/Namespaces no menu do Rancher. Assim que você clicar nesta opção, terá um botão "Add Project", clique nele. Na tela de cadastro de projeto, coloque o nome do seu projeto, e caso queira, personalize-o com configurações adicionais. Quando tudo estiver pronto, clique no botão Create, no nosso caso, colocamos apenas o nome e registramos o projeto como na imagem abaixo:
 <img src="./images/registering-project.PNG" title="Registrando um projeto no Rancher" />
+<br />
+Verifique que agora temos nosso projeto, para acessá-lo, basta colocar o mouse por cima da primeira opção do menu do Rancher e clicar no projeto, o que irá lhe levar para uma tela parecida com essa:
+<img src="./images/inside-project.PNG" title="Dentro do projeto" />
+<br />
+Para fazer o deploy de uma aplicação agora é simples, clique no botão "Deploy". Você será redirecionado à página de deploy. No campo "Name", coloque o nome da sua aplicação (que também será o nome base do(s) pod(s)), no campo "Docker Image" coloque o nome da imagem que será rodada nesse deploy e no campo "Namespace", selecione ou crie um Namespace onde este deploy ficará dentro, os Namespace's servem mais como organizadores de aplicações, para que você possa separar em categorias ou algo do gênero, caso sua aplicação precise externalizar alguma porta, adicione a porta logo abaixo, caso queira adicionar environments, também terá logo abaixo uma aba onde você poderá setar os environments de sua aplicação, entre outras opções que você poderá configurar antes de fazer o deploy. Quando tudo estiver pronto, clique em "Launch". <b>Pronto! Você já tem sua primeira aplicação rodando perfeitamente :smile:</b>
+<img src="./image/deploy-success.PNG" title="Após o deploy ter sido feito com sucesso" />

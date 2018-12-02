@@ -41,3 +41,12 @@ Verifique que agora temos nosso projeto, para acessá-lo, basta colocar o mouse 
 <br />
 Para fazer o deploy de uma aplicação agora é simples, clique no botão "Deploy". Você será redirecionado à página de deploy. No campo "Name", coloque o nome da sua aplicação (que também será o nome base do(s) pod(s)), no campo "Docker Image" coloque o nome da imagem que será rodada nesse deploy e no campo "Namespace", selecione ou crie um Namespace onde este deploy ficará dentro, os Namespace's servem mais como organizadores de aplicações, para que você possa separar em categorias ou algo do gênero, caso sua aplicação precise externalizar alguma porta, adicione a porta logo abaixo, caso queira adicionar environments, também terá logo abaixo uma aba onde você poderá setar os environments de sua aplicação, entre outras opções que você poderá configurar antes de fazer o deploy. Quando tudo estiver pronto, clique em "Launch". <b>Pronto! Você já tem sua primeira aplicação rodando perfeitamente :smile:</b>
 <img src="./images/deploy-success.PNG" title="Após o deploy ter sido feito com sucesso" />
+
+# Criando uma rota para sua aplicação com o Ingress
+O Ingress é o serviço responsável pelo balanceamento de carga das aplicações, com ele nós geramos as rotas das nossas aplicações para acessá-las externamente.
+<br />
+Para configurá-lo da melhor forma, antes de tudo, vamos acessar as configurações Globais. Primeiro coloque o mouse em cima da primeira opção do menu, após isso clique no Global, veja que o menu irá mudar, procure pela opção "Settings" no menu e clique nela. Na tela que irá carregar, terão algumas das configurações do Rancher 2.0, procure nesta tela por "ingress-ip-domain", altere o valor dessa configuração colocando da seguinte forma: <IP-DO-SERVIDOR>.xip.io
+```console
+<IP-DO-SERVIDOR>.xip.io
+```
+Após isso, volte no projeto que você criou, clique em "Load Balancing", após isso clique em "Add Ingress", adicione o nome da rota, o Namespace onde está a sua aplicação, deixe a primeira opção marcada "Automatically generate a...", no Target, adicione a aplicação, e a porta que ela está escutando, feito isso, basta clicar em "Save"e aguardar a rota ficar ativa.

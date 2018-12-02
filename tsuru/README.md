@@ -16,7 +16,7 @@ conductorlabs@pc:~$ git clone https://github.com/conductorlabs/wrapper.git
 ```
 * Entre na pasta tsuru que se encontra dentro do repositório: 
 ```console
-conductorlabs@pc:~$ cd tsuru/
+conductorlabs@pc:~$ cd tsuru/tsuru/
 ```
 * Execute o script build.compose.sh: 
 ```console

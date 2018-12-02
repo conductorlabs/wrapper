@@ -13,8 +13,10 @@ Sem mais enrolação, vamos subir o Rancher com o seguinte comando:
 ```console
 conductorlabs@pc:~$ docker run -d --restart=unless-stopped -p 8080:80 -p 9090:443 rancher/rancher:latest
 ```
-Perceba que externalizamos duas portas, são elas a 8080 e 9090, não usamos 80 nem 443 do servidor pois essas portas estarão ocupadas com outros serviços 
-do Rancher
+Perceba que externalizamos duas portas, são elas a 8080 e 9090, não usamos 80 nem 443 do servidor pois essas portas estarão ocupadas com outros serviços do Rancher.
 
 <br />
 Com isso, seu Rancher já terá subido, agora, entre no IP do seu servidor no browser seguido da porta 9090. Quando você entrar, terá uma tela de "boas-vindas", pedindo para você definir uma senha para o usuário "admin", após definir a senha, você terá que confirmar o IP do servidor do Rancher, aconselhamos que deixe o IP que já estiver preenchido, caso queira personalizar esse IP, fique à vontade.
+<br />
+Depois de instalado, teremos a seguinte tela:
+<img src="./images/instalacao-1.png" title="Primeira tela após a instalação" />

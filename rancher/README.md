@@ -2,7 +2,7 @@
   <img src="./images/rancher-logo.png" width="230" title="Rancher" />
 </div>
 
-# O que é Rancher?
+# O que é o Rancher?
 Rancher é um orquestrador de containers que usa como base Kubernetes criado pela <a href="https://rancher.com/">Rancher Labs</a>.
 
 # Instalação

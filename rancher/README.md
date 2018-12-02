@@ -16,7 +16,7 @@ conductorlabs@pc:~$ docker run -d --restart=unless-stopped -p 8080:80 -p 9090:44
 Perceba que externalizamos duas portas, são elas a 8080 e 9090, não usamos 80 nem 443 do servidor pois essas portas estarão ocupadas com outros serviços do Rancher.
 
 <br />
-Com isso, seu Rancher já terá subido, agora, entre no IP do seu servidor no browser seguido da porta 9090. Quando você entrar, terá uma tela de "boas-vindas", pedindo para você definir uma senha para o usuário "admin", após definir a senha, você terá que confirmar o IP do servidor do Rancher, aconselhamos que deixe o IP que já estiver preenchido, caso queira personalizar esse IP, fique à vontade.
+Com isso, seu Rancher já estará ativo, agora, entre no IP do seu servidor no browser seguido da porta 9090. Quando você entrar, terá uma tela de "boas-vindas", pedindo para você definir uma senha para o usuário "admin", após definir a senha, você terá que confirmar o IP do servidor do Rancher, aconselhamos que deixe o IP que já estiver preenchido, caso queira personalizar esse IP, fique à vontade.
 <br /><br />
 Depois de instalado, teremos a seguinte tela:
 <br />
@@ -27,3 +27,11 @@ Vamos então adicionar nosso primeiro cluster, clique no botão Add Cluster, qua
 ```console
 conductorlabs@pc:~$ sudo docker run -d --privileged --restart=unless-stopped --net=host -v /etc/kubernetes:/etc/kubernetes -v /var/run:/var/run rancher/rancher-agent:v2.1.2 --server https://<SEU-IP>:9090 --token <TOKEN-GERADO> --ca-checksum <CHECKSUM> --etcd --controlplane --worker
 ```
+Após a execução deste comando, você vai ver que na interface do Rancher aparecerá uma mensagem como essa:
+<img src="./images/node-registered.PNG" title="Mensagem após o Node ser registrado" />
+<br />
+Vá na aba "Clusters" do menu do Rancher e aguarde até que o seu cluster esteja com o status "Active". Assim que ele estiver ativo, clique nele, você entrará num painel com alguns gráficos referentes ao consumo de CPU, Memória e Pods usados, nesta tela você já está com seu cluster devidamente configurado e com seu node funcionando.
+
+# Criando uma aplicação
+Para criar uma aplicação é muito simples, primeiro, crie um projeto acessando Projects/Namespaces no menu do Rancher. Assim que você clicar nesta opção, terá um botão "Add Project", clique nele. Na tela de cadastro de projeto, coloque o nome do seu projeto, e caso queira, personalize-o com configurações adicionais. Quando tudo estiver pronto, clique no botão Create, no nosso caso, colocamos apenas o nome e registramos o projeto como na imagem abaixo:
+<img src="./images/registering-project.PNG" title="Registrando um projeto no Rancher" />

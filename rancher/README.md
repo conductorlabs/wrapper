@@ -49,4 +49,4 @@ Para configurá-lo da melhor forma, antes de tudo, vamos acessar as configuraç�
 ```console
 <IP-DO-SERVIDOR>.xip.io
 ```
-Após isso, volte no projeto que você criou, clique em "Load Balancing", após isso clique em "Add Ingress", adicione o nome da rota, o Namespace onde está a sua aplicação, deixe a primeira opção marcada "Automatically generate a...", no Target, adicione a aplicação, e a porta que ela está escutando, feito isso, basta clicar em "Save"e aguardar a rota ficar ativa.
+Após isso, volte no projeto que você criou, clique em "Load Balancing", após isso clique em "Add Ingress", adicione o nome da rota, o Namespace onde está a sua aplicação, deixe a primeira opção marcada "Automatically generate a...", no Target, adicione a aplicação, e a porta que ela está escutando, feito isso, basta clicar em "Save" e aguardar a rota ficar ativa.

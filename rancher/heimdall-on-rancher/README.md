@@ -115,7 +115,7 @@ REACT_APP_PORT = 80
 REACT_APP_API = /v1/api
 REACT_APP_VERSION= 1.3.0
 ```
-<br />
+
 Após isso, instale as dependências do NodeJS e rode a aplicação apenas para se certificar que a aplicação está rodando normalmente: 
 ```console
 conductorlabs@pc:~$ sudo npm install && npm start

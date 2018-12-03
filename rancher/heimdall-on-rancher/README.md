@@ -30,6 +30,7 @@ Antes de subirmos os módulos do Heimdall, vamos subir antes os serviços nos qu
 Primeiro vamos subir o PostgreSQL, para fazermos isso, vamos nos nossos Workloads do projeto e clicar em Deploy. O nome da nossa aplicação será <code>postgres-heimdall</code> 
 a imagem dele será <code>postgres:alpine</code>, e caso não exista, vamos criar uma Namespace chamada <code>services</code> para deixá-lo dentro dela. Após isso, externalize 
 a porta <code>5432</code> do nosso serviço e vamos adicionar as seguintes environments (você pode alterá-las, mas terá de se lembrar de alterar quando for alterar o arquivo do heimdall-config): 
+<br />
 ```console
 POSTGRES_DB = heimdall
 POSTGRES_PASSWORD = 123456
@@ -50,6 +51,7 @@ Após subir o redis, por fim, vamos subir o RabbitMQ, o processo será o mesmo, 
 imagem será <code>rabbitmq:alpine</code>, por fim, clicamos em Launch.
 <br /><br />
 Ao fim de todos os deploys, teremos um total de 3 aplicações rodando, deverá estar algo parecido com isso: 
+<br />
 <div align="center">
   <img src="./images/services-deployed.PNG" title="Serviços" />
 </div>
@@ -68,13 +70,14 @@ e copie o IP Address de todos eles. Vamos agora substituir colocando esses IP's 
 o do redis colocaremos em <code>heimdall.redis.host</code> e o do RabbitMQ colocaremos em <code>spring.rabbitmq.host</code>
 <br /><br />
 Após atualizados os dados, vamos agora subir o nosso módulo de <b>configuração</b>. É bem parecido como fizemos para subir os serviços, vamos fazer um novo Deploy, o nome do nosso deploy será <code>heimdall-config</code>, a imagem dele será <code>getheimdall/heimdall-config</code>, e no Namespace, por organização, criaremos um novo Namespace chamado <code>heimdall-modules</code>, e é lá que ele ficará. Vamos externalizar a porta onde o config se encontrará rodando, geralmente a <code>8080</code>, no meu caso deixei por padrão a <code>8888</code>, e agora precisaremos definir dois environments para nosso config, que são eles: o caminho onde estão as configurações (ou seja, o link do repositório Git) e o perfil do Spring que será usado para subir o config (que será o perfil docker). No geral, nossas environments serão: 
-
+<br />
 ```console
 SPRING_CLOUD_CONFIG_SERVER_GIT_URI=<URL-DO-REPOSITORIO-GIT>
 SPRING_PROFILES_ACTIVE=docker
 ```
 <br />
 No final, a tela do deploy ficará mais ou menos assim: 
+<br />
 <div align="center">
    <img src="./images/heimdall-config-deploy.PNG" title="Como ficará para fazer o deploy do config" />
 </div>
@@ -84,7 +87,7 @@ Após isso, basta clicar em Launch.
 Já temos o nosso config rodando, vamos agora gerar uma rota para ele no Ingress, para isso, basta ir na página de Load Balancing, chegando lá, clique em Add Ingress, o nome será <code>heimdall-config-route</code>, deixe marcado o primeiro option, e selecione o Workload do <code>heimdall-config</code> na porta que você definiu para ser externalizada quando foi realizar o deploy, que no meu caso é <code>8888</code>. Aguarde a rota ser gerada e copie-a, precisaremos mais a frente. No mais, já temos o config rodando perfeitamente e já com uma rota para acesso externo.
 <br /><br />
 Agora vamos subir o Gateway, mais uma vez vamos na página de deploy de aplicação, o nome da nossa aplicação será <code>heimdall-gateway</code>, o nome da imagem será <code>getheimdall/heimdall-gateway</code> e deixaremos na Namespace dos módulos do Heimdall, vamos externalizar a porta que foi configurada lá no nosso repositório, que no meu caso novamente será <code>8888</code>, mas lembre-se que default é <code>8080</code>, e vamos adicionar dois environments, um será referente à URL do config que acabamos de subir, que é aquela que pedi que você copiasse, e outra será referente ao perfil do Spring que será usado na aplicação, que será novamente o docker. As environments que setaremos serão: 
-
+<br />
 ```console
 SPRING_CLOUD_CONFIG_URI=http://<URL-DO-CONFIG>
 SPRING_PROFILES_ACTIVE=docker
@@ -110,7 +113,7 @@ Antes de partirmos pro Front-end, precisaremos criar uma rota para nossa API, fa
 vamos para a aba de Load Balancing, clicamos em Add Ingress, colocamos o nome <code>heimdall-api-route</code>, deixamos o primeiro option marcado, selecionamos o Workload da API e colocamos a porta que definimos para externalizar.
 <br /><br />
 Agora que já temos nossa API já com a rota, vamos para o front-end, que pode ser a parte um pouco mais demorada. Na sua máquina, clone o <a href="https://github.com/getheimdall/heimdall">repositório do heimdall</a>, volte a versão para a 1.8 usando o comando <code>git checkout tags/1.8.0-stable</code> entre na pasta heimdall-frontend, altere o arquivo <code>.env.production</code> da seguinte forma: 
-
+<br />
 ```console
 REACT_APP_SCHEME = HTTP
 REACT_APP_ADDRESS = <ROTA-EXTERNA-DA-API>
@@ -123,3 +126,36 @@ Após isso, instale as dependências do NodeJS e rode a aplicação apenas para 
 ```console
 conductorlabs@pc:~$ sudo npm install && npm start
 ```
+<br />
+Quando a aplicação abrir, cancele o run do NPM e execute o comando: 
+<br />
+```console
+conductorlabs@pc:~$ npm run build
+```
+<br />
+Com esse comando, o NPM irá buildar a aplicação para produção, o que você precisará fazer agora é fazer o build de uma imagem Docker a partir do build feito pelo NPM, não se preocupe, pois na pasta do front-end já tem o Dockerfile, então basta rodarmos o comando: 
+<br />
+```console
+conductorlabs@pc:~$ docker build -t usuario/repositorio:latest .
+```
+<br />
+Lembre-se que o usuário que você irá botar, é o seu usuário do DockerHub, para esta parte você precisa ter seu usuário e um repositório criado no DockerHub. Após o build, iremos fazer o push para nosso repositório remoto: 
+<br />
+```console
+conductorlabs@pc:~$ docker push usuario/repositorio:latest
+```
+<br />
+Agora que temos a imagem já com os environments definidos, basta fazermos o deploy no Rancher 2.0, vamos novamente até o nosso projeto, clicamos em Deploy, o nome da nossa aplicação será <code>heimdall-frontend</code>, a imagem será o caminho da imagem que você buildou e fez o push, que será <code>seu-usuario/repositorio:latest</code>, e você irá externalizar a porta <code>5000</code>, após isso, basta clicar em Launch, já que já definimos as environments chumbadas na imagem que estamos puxando. A página do deploy ficará mais ou menos assim: 
+<br />
+<div align="center">
+  <img src="./images/heimdall-frontend-deploy.PNG" title="Deploy front-end" />
+</div>
+<br /><br />
+Após tivermos feito o deploy do front-end, ainda precisamos criar a rota para acessá-lo externamente pelo nosso browser, por exemplo, para isso, basta irmos no Load Balancing > Add Ingress, o nome da rota será <code>heimdall-frontend-route</code>, deixaremos o primeiro option marcado, selecionaremos nosso Workload do front-end na porta que externalizamos que é a <code>5000</code> e clicamos em Save. E pronto, após gerar a rota, basta acessá-la e desfrutar do seu Heimdall dentro do Rancher 2.0 :smile:
+
+<br /><br />
+
+<div align="center">
+  <img src="./images/heimdall-login.PNG" title="Tela de login do Heimdall" />
+  <img src="./images/heimdall-dashboard.PNG" title="Dashboard do Heimdall" />
+</div>

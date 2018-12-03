@@ -89,6 +89,15 @@ SPRING_PROFILES_ACTIVE = docker
 ```
 <br />
 A página ficará mais ou menos assim: 
+<br />
 <div align="center">
   <img src="./images/heimdall-gateway-deploy.PNG" title="Página de deploy do heimdall-gateway" />
+</div>
+<br /><br />
+Pronto, agora nosso Gateway já está rodando.
+<br /><br />
+Vamos agora subir nossa API, o processo será <b>MUITO</b> parecido com o Gateway, mudando apenas os nomes de aplicação e imagem, em resumo, deixarei apenas a imagem referente ao deploy da API: 
+<br />
+<div align="center">
+  <img src="./images/heimdall-api-deploy.PNG" title="Página de deploy do heimdall-api" />
 </div>

@@ -101,3 +101,22 @@ Vamos agora subir nossa API, o processo será <b>MUITO</b> parecido com o Gatewa
 <div align="center">
   <img src="./images/heimdall-api-deploy.PNG" title="Página de deploy do heimdall-api" />
 </div>
+<br /><br />
+Clique em Launch e aguarde a API subir, e pronto, já temos nossa API.
+<br /><br />
+Antes de partirmos pro Front-end, precisaremos criar uma rota para nossa API, fazendo da mesma forma que fizemos com o Config, 
+vamos para a aba de Load Balancing, clicamos em Add Ingress, colocamos o nome <code>heimdall-api-route</code>, deixamos o primeiro option marcado, selecionamos o Workload da API e colocamos a porta que definimos para externalizar.
+<br /><br />
+Agora que já temos nossa API já com a rota, vamos para o front-end, que pode ser a parte um pouco mais demorada. Na sua máquina, clone o <a href="https://github.com/getheimdall/heimdall">repositório do heimdall</a>, volte a versão para a 1.8 usando o comando <code>git checkout tags/1.8.0-stable</code> entre na pasta heimdall-frontend, altere o arquivo <code>.env.production</code> da seguinte forma: 
+```console
+REACT_APP_SCHEME = HTTP
+REACT_APP_ADDRESS = <ROTA-EXTERNA-DA-API>
+REACT_APP_PORT = 80
+REACT_APP_API = /v1/api
+REACT_APP_VERSION= 1.3.0
+```
+<br />
+Após isso, instale as dependências do NodeJS e rode a aplicação apenas para se certificar que a aplicação está rodando normalmente: 
+```console
+conductorlabs@pc:~$ sudo npm install && npm start
+```

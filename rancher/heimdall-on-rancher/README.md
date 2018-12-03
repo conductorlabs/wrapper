@@ -68,6 +68,7 @@ e copie o IP Address de todos eles. Vamos agora substituir colocando esses IP's 
 o do redis colocaremos em <code>heimdall.redis.host</code> e o do RabbitMQ colocaremos em <code>spring.rabbitmq.host</code>
 <br /><br />
 Após atualizados os dados, vamos agora subir o nosso módulo de <b>configuração</b>. É bem parecido como fizemos para subir os serviços, vamos fazer um novo Deploy, o nome do nosso deploy será <code>heimdall-config</code>, a imagem dele será <code>getheimdall/heimdall-config</code>, e no Namespace, por organização, criaremos um novo Namespace chamado <code>heimdall-modules</code>, e é lá que ele ficará. Vamos externalizar a porta onde o config se encontrará rodando, geralmente a <code>8080</code>, no meu caso deixei por padrão a <code>8888</code>, e agora precisaremos definir dois environments para nosso config, que são eles: o caminho onde estão as configurações (ou seja, o link do repositório Git) e o perfil do Spring que será usado para subir o config (que será o perfil docker). No geral, nossas environments serão: 
+
 ```console
 SPRING_CLOUD_CONFIG_SERVER_GIT_URI=<URL-DO-REPOSITORIO-GIT>
 SPRING_PROFILES_ACTIVE=docker
@@ -83,6 +84,7 @@ Após isso, basta clicar em Launch.
 Já temos o nosso config rodando, vamos agora gerar uma rota para ele no Ingress, para isso, basta ir na página de Load Balancing, chegando lá, clique em Add Ingress, o nome será <code>heimdall-config-route</code>, deixe marcado o primeiro option, e selecione o Workload do <code>heimdall-config</code> na porta que você definiu para ser externalizada quando foi realizar o deploy, que no meu caso é <code>8888</code>. Aguarde a rota ser gerada e copie-a, precisaremos mais a frente. No mais, já temos o config rodando perfeitamente e já com uma rota para acesso externo.
 <br /><br />
 Agora vamos subir o Gateway, mais uma vez vamos na página de deploy de aplicação, o nome da nossa aplicação será <code>heimdall-gateway</code>, o nome da imagem será <code>getheimdall/heimdall-gateway</code> e deixaremos na Namespace dos módulos do Heimdall, vamos externalizar a porta que foi configurada lá no nosso repositório, que no meu caso novamente será <code>8888</code>, mas lembre-se que default é <code>8080</code>, e vamos adicionar dois environments, um será referente à URL do config que acabamos de subir, que é aquela que pedi que você copiasse, e outra será referente ao perfil do Spring que será usado na aplicação, que será novamente o docker. As environments que setaremos serão: 
+
 ```console
 SPRING_CLOUD_CONFIG_URI=http://<URL-DO-CONFIG>
 SPRING_PROFILES_ACTIVE=docker

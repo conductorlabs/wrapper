@@ -84,8 +84,8 @@ Já temos o nosso config rodando, vamos agora gerar uma rota para ele no Ingress
 <br /><br />
 Agora vamos subir o Gateway, mais uma vez vamos na página de deploy de aplicação, o nome da nossa aplicação será <code>heimdall-gateway</code>, o nome da imagem será <code>getheimdall/heimdall-gateway</code> e deixaremos na Namespace dos módulos do Heimdall, vamos externalizar a porta que foi configurada lá no nosso repositório, que no meu caso novamente será <code>8888</code>, mas lembre-se que default é <code>8080</code>, e vamos adicionar dois environments, um será referente à URL do config que acabamos de subir, que é aquela que pedi que você copiasse, e outra será referente ao perfil do Spring que será usado na aplicação, que será novamente o docker. As environments que setaremos serão: 
 ```console
-SPRING_CLOUD_CONFIG_URI = http://<URL-DO-CONFIG>
-SPRING_PROFILES_ACTIVE = docker
+SPRING_CLOUD_CONFIG_URI=http://<URL-DO-CONFIG>
+SPRING_PROFILES_ACTIVE=docker
 ```
 <br />
 A página ficará mais ou menos assim: 

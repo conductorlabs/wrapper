@@ -153,7 +153,7 @@ Agora que temos a imagem já com os environments definidos, basta fazermos o dep
 <br /><br />
 Após tivermos feito o deploy do front-end, ainda precisamos criar a rota para acessá-lo externamente pelo nosso browser, por exemplo, para isso, basta irmos no Load Balancing > Add Ingress, o nome da rota será <code>heimdall-frontend-route</code>, deixaremos o primeiro option marcado, selecionaremos nosso Workload do front-end na porta que externalizamos que é a <code>5000</code> e clicamos em Save. E pronto, após gerar a rota, basta acessá-la e desfrutar do seu Heimdall dentro do Rancher 2.0 :smile:
 
-<br />
+<br /><br />
 
 <div align="center">
   <img src="./images/heimdall-login.PNG" title="Tela de login do Heimdall" />
